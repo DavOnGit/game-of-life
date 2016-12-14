@@ -1,0 +1,23 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  flex: 1 0 auto;
+  //height: 100vh;
+  //max-height: 2000px;
+}
+
+.row{
+  flex: 0 0 auto;
+  display: flex;
+  //height: 100%;
+  //width: 100%;
+}
+
+.cell{
+  flex: 0 0 auto;
+  background-color: #47E318;
+  border: .5px solid #303032;
+  border-radius: 100%;
+}
+.cell[data-cell='0']{ background-color: #0F0F0F }

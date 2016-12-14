@@ -1,0 +1,33 @@
+.root{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
+  height: 100px;
+  font-family: cursive;
+}
+
+.commons{
+  padding: 0 20px;
+  font-family: monospace;
+}
+
+.title{
+  composes: commons;
+  color: #ccc;
+}
+
+.btn{
+  composes: commons title;
+  flex: 0 0 80px;
+  height: 80px;
+  font-size: 20px;
+  background-color: transparent;
+  border: .5px solid;
+  border-radius: 100%;
+  margin: 0 5px;
+  padding: 10px 10px;
+  cursor: pointer;
+  outline: none;
+  font-family: fantasy;
+}
