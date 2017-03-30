@@ -1,4 +1,4 @@
-.root{
+.root {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,17 +7,17 @@
   font-family: cursive;
 }
 
-.commons{
+.commons {
   padding: 0 20px;
   font-family: monospace;
 }
 
-.title{
+.title {
   composes: commons;
   color: #ccc;
 }
 
-.btn{
+.btn {
   composes: commons title;
   flex: 0 0 80px;
   height: 80px;
@@ -30,4 +30,11 @@
   cursor: pointer;
   outline: none;
   font-family: fantasy;
+}
+
+.counter {
+  composes: btn;
+  text-align: center;
+  line-height: 58px;
+  cursor: default;
 }

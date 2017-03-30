@@ -1,24 +1,23 @@
 var path    = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-// Webpack config for developement:
+var isProd = process.env.NODE_ENV === 'production' ? true : false;
+
+// Webpack config for development:
 module.exports = {
     devtool: 'cheap-module-source-map',
-    entry: [
-        'react-hot-loader/patch',
-        'webpack-hot-middleware/client',
-        './src/index.js'
+    entry: isProd ? ['babel-polyfill', './src/index.js']
+    : [
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client',
+      './src/index.js'
     ],
     output: {
-        path: path.join(__dirname, 'public/dist'),
-        filename: 'bundle.js',
-        publicPath: '/static/'
+        path: path.join(__dirname, 'public'),
+        filename: 'js/bundle.js',
+        publicPath: '/'
     },
-    plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-    ],
     module: {   // BABEL
         loaders: [{
             test: /\.jsx?$/,
@@ -27,10 +26,30 @@ module.exports = {
         },
         {   // CSS-loader and STYLE-loader used.
             test: /\.css$/,
-            loaders: [
-                'style?sourceMap',
-                'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
-            ]
+            loader: isProd ? ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[path]___[name]___[local]___[hash:base64:5]')
+                : 'style!css?modules&importLoaders=1&localIdentName=[path]___[name]___[local]___[hash:base64:5]'
         }]
-    }
+    },
+    plugins: isProd ?
+    [
+      new webpack.EnvironmentPlugin(['NODE_ENV']),
+      new webpack.NamedModulesPlugin(),
+      new webpack.ProvidePlugin({'$': 'jquery', 'jQuery': 'jquery', '_': 'underscore'}),
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.OccurrenceOrderPlugin(),
+      new ExtractTextPlugin('styles/bundle.css', {allChunks: true}),
+      new webpack.optimize.UglifyJsPlugin({
+        compressor: {warnings: false, drop_console: true, drop_debugger: true},
+        output: {ascii_only: true, comments: false}
+      }),
+      new webpack.NoErrorsPlugin()
+    ]
+    : [
+      new webpack.EnvironmentPlugin(['NODE_ENV']),
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin(),
+      new webpack.NoErrorsPlugin(),
+    ],
+    devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'cheap-module-eval-source-map'
 };

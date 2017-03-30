@@ -1,0 +1,7 @@
+.cell{
+  flex: 0 0 auto;
+  /*background-color: #47E318;*/
+  border: 0.5px solid #303032;
+  border-radius: 50%;
+  cursor: pointer;
+}
