@@ -8,18 +8,31 @@
     "start": "cross-env NODE_ENV=production webpack && cross-env NODE_ENV=production node server.js",
     "dev": "cross-env NODE_ENV=development node server.js"
   },
+  "engines": {
+    "node": "6.9.4",
+    "npm": "4.0.2"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/DavOnGit/game-of-life.git"
   },
-  "keywords": [],
+  "homepage": "https://github.com/DavOnGit/game-of-life.git",
   "author": "Davide Vozzi <davide.vozzi@gmail.com>",
+  "keywords": [
+    "Game of life",
+    "react"
+  ],
   "license": "MIT",
   "bugs": {
     "url": ""
   },
-  "homepage": "https://github.com/DavOnGit/game-of-life.git",
   "devDependencies": {
+    "eslint": "3.11.1",
+    "eslint-plugin-react": "6.7.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
+  },
+  "dependencies": {
     "babel-core": "^6.0.20",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.0.1",
@@ -27,27 +40,21 @@
     "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-jsx-self": "6.22.0",
+    "babel-polyfill": "6.23.0",
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
+    "compression": "1.6.2",
+    "cross-env": "3.2.4",
     "css-loader": "0.26.0",
-    "eslint": "3.11.1",
-    "eslint-plugin-react": "6.7.1",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "1.0.1",
-    "flow-bin": "0.36.0",
-    "react-addons-perf": "^15.3.2",
+    "react": "15.4.2",
+    "react-addons-perf": "15.4.2",
     "react-css-modules": "4.1.0",
+    "react-dom": "15.4.2",
+    "react-hot-loader": "^3.0.0-beta.6",
     "style-loader": "0.13.1",
-    "webpack": "^1.12.2",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
-  },
-  "dependencies": {
-    "babel-polyfill": "6.23.0",
-    "compression": "1.6.2",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-hot-loader": "^3.0.0-beta.6"
+    "webpack": "^1.12.2"
   }
 }

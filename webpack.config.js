@@ -2,11 +2,11 @@ var path    = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-var isProd = process.env.NODE_ENV === 'production' ? true : false;
+var ENV = process.env.NODE_ENV
+var isProd = ENV === 'production' ? true : false;
+console.log('Webpack NODE_ENV: ' + ENV);
 
-// Webpack config for development:
 module.exports = {
-    devtool: 'cheap-module-source-map',
     entry: isProd ? ['babel-polyfill', './src/index.js']
     : [
       'react-hot-loader/patch',
@@ -36,7 +36,7 @@ module.exports = {
       new webpack.NamedModulesPlugin(),
       new webpack.ProvidePlugin({'$': 'jquery', 'jQuery': 'jquery', '_': 'underscore'}),
       new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.OccurrenceOrderPlugin(),
+      new webpack.optimize.OccurrenceOrderPlugin(true),
       new ExtractTextPlugin('styles/bundle.css', {allChunks: true}),
       new webpack.optimize.UglifyJsPlugin({
         compressor: {warnings: false, drop_console: true, drop_debugger: true},

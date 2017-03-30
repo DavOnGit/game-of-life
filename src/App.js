@@ -88,7 +88,7 @@ export default class extends Component {
   }
   
   _startStopSimulation = () => {
-    if(typeof this.timer === 'number') {
+    if(typeof this.frame === 'number') {
       window.cancelAnimationFrame(this.frame)
       this.frame = null
       this.setState({ ssBtn: 'start' })

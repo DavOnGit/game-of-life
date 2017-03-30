@@ -5,11 +5,12 @@ var config = require('./webpack.config');
 var compression = require('compression')
 
 var app = express();
-var compiler = webpack(config);
 var ENV = process.env.NODE_ENV || 'production'
 var PORT = process.env.PORT || 3000
+console.log('Server NODE_ENV: ' + ENV);
 
 if (ENV !== 'production') {
+  var compiler = webpack(config);
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath,

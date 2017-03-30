@@ -8,7 +8,7 @@ export default class extends Component {
   render() {
       return (
         <div styleName='root'>
-          <h1 styleName='title'>Hello!</h1>
+          <h1 styleName='title'>Game of Life</h1>
           <button styleName='btn' onClick={this.props.startStopSim}>{this.props.ssBtn}</button>
           {/* <button styleName='btn' onClick={this.props.stopSim}>Stop</button> */}
           <button styleName='btn' onClick={this.props.stepSim}>step</button>
