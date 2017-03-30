@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
+
 import styles from './css/header.css';
 
 @CSSModules(styles)
@@ -11,6 +12,7 @@ export default class extends Component {
           <button styleName='btn' onClick={this.props.startStopSim}>{this.props.ssBtn}</button>
           {/* <button styleName='btn' onClick={this.props.stopSim}>Stop</button> */}
           <button styleName='btn' onClick={this.props.stepSim}>step</button>
+          <button styleName='btn' onClick={this.props.clearBoard}>clear</button>
           {/* <form lpformnum="1">
             <select id="shapes">
             <option>Clear</option>
@@ -29,12 +31,13 @@ export default class extends Component {
             <img src="pix/grid.svg" alt="" width="20" height="20" />
             <input id="size" type="range" min="2" max="11" value="2" title="grid size" />
             <label id="generation">283</label>
+            <input id="cols" type="range" min="10" max="300" title="cell size" />
           </form> */}
-          <input id="cols" type="range" min="10" max="300" title="cell size" />
 
-          
 
-          <div styleName='btn'>{this.props.counter}</div>
+
+
+          <div styleName='counter'>{this.props.counter}</div>
         </div>
       )
   }

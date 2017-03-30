@@ -1,30 +1,36 @@
 var path = require('path');
 var webpack = require('webpack');
 var express = require('express');
-var devMiddleware = require('webpack-dev-middleware');
-var hotMiddleware = require('webpack-hot-middleware');
 var config = require('./webpack.config');
+var compression = require('compression')
 
 var app = express();
 var compiler = webpack(config);
+var ENV = process.env.NODE_ENV || 'production'
+var PORT = process.env.PORT || 3000
 
-app.use(devMiddleware(compiler, {
-  noInfo: true,
-  reload: true,
-  publicPath: config.output.publicPath,
-  historyApiFallback: true,
-}));
+if (ENV !== 'production') {
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath,
+    stats: {
+      colors: true
+    },
+    historyApiFallback: true,
+  }));
+  app.use(require('webpack-hot-middleware')(compiler));
+  
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
+} else {
+  app.use(compression())
+  app.use(express.static(path.join(__dirname, 'public')))
+}
 
-app.use(hotMiddleware(compiler));
-
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-app.listen(3000, function (err) {
+app.listen(PORT, function (err) {
   if (err) {
     return console.error(err);
   }
-
-  console.log('Listening at http://localhost:3000/ ');
+  console.log('Listening at http://localhost: ' + PORT);
 });
