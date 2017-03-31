@@ -8,10 +8,10 @@ export default class extends Component {
   render() {
       return (
         <div styleName='root'>
-          <h1 styleName='title'>Game of Life</h1>
           <button styleName='btn' onClick={this.props.startStopSim}>{this.props.ssBtn}</button>
           {/* <button styleName='btn' onClick={this.props.stopSim}>Stop</button> */}
           <button styleName='btn' onClick={this.props.stepSim}>step</button>
+          <h1 styleName='title'>Game of Life</h1>
           <button styleName='btn' onClick={this.props.clearBoard}>clear</button>
           {/* <form lpformnum="1">
             <select id="shapes">
@@ -33,10 +33,6 @@ export default class extends Component {
             <label id="generation">283</label>
             <input id="cols" type="range" min="10" max="300" title="cell size" />
           </form> */}
-
-
-
-
           <div styleName='counter'>{this.props.counter}</div>
         </div>
       )

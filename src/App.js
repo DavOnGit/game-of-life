@@ -17,7 +17,7 @@ export default class extends Component {
   }
   
   _responsiveCellNumber = (size = 24) => {
-    const w = window.innerWidth - 50, h = window.innerHeight - 150
+    const w = window.innerWidth - 50, h = window.innerHeight - 120
     const minSize = 6, maxSize = w > h ? ~~h/3 : ~~w/3
     const cellSize = size < minSize ? minSize : size > maxSize ? maxSize : size;
     
@@ -145,7 +145,12 @@ export default class extends Component {
           <div styleName='container' onClick={this._handleClickCell}>
             {_rows}
           </div>
-            </div>
+          <div styleName='footer'>
+            <a href='https://github.com/DavOnGit/game-of-life' target='_blank'>
+              &lt;code&nbsp;on&nbsp;github&gt;
+            </a>
+          </div>
+        </div>
       )
     }
 }
